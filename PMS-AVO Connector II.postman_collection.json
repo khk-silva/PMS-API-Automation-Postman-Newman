@@ -1,0 +1,2902 @@
+{
+	"info": {
+		"_postman_id": "12f8ace9-83d1-4f81-ae9a-532d881a724d",
+		"name": "PMS-AVO Connector II",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21186961"
+	},
+	"item": [
+		{
+			"name": "PC/NPC",
+			"item": [
+				{
+					"name": "NP IND",
+					"item": [
+						{
+							"name": "NP-IND - IND DTA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"NP-IND - IND DTA\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"NP-IND - IND DTA:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as Total FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND AGENTCODE='{{agent_code}}' AND MAINCLASS IN ('DTA', 'DTA1', 'JNDT1', 'JNDT2', 'NDTA1', 'NDTA2') \"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "NP-IND - GRP DTA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"NP-IND - GRP DTA\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"NP-IND - GRP DTA from this query:\", totalValue);\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND AGENTCODE='{{agent_code}}' AND MAINCLASS IN ('LLG', 'PEN','JSV','BLANK') AND MODETYPE IN ('S') \"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "NP-IND - GRP LIFE",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"NP-IND - GRP LIFE\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"NP-IND - GRP LIFE from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND AGENTCODE='{{agent_code}}' AND MAINCLASS IN ('JSV') AND MODETYPE NOT IN ('S')\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "NP-IND - OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"NP-IND - OTHER\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"NP-IND - OTHER from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND AGENTCODE='{{agent_code}}' AND MAINCLASS IN ('JCA', 'JCA01', 'JLU', 'NJU', 'NJU2', 'NJU4', 'NGT', 'NGT01', 'NGT02', 'JEV', 'NJEV','NJU3', 'POD', 'SPS', 'NSPS', 'LI1', 'LI2', 'NLI2', 'LI3', 'LI4', 'LIF1', 'SUW', 'NSW', 'VIS', 'VSR', 'JSS', 'VSP', 'CBPLP', 'CBNSW', 'CBMED', 'DNL', 'PRA', 'LAK', 'LAR', 'SHA', 'SHR', 'NGL', 'GIT')\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "NP-IND - OTHER JHCB",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"NP-IND - OTHER JHCB\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"NP-IND - OTHER JHCB from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND AGENTCODE='{{agent_code}}' AND MAINCLASS IN ('JHCB')\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "PC Team",
+					"item": [
+						{
+							"name": "PC Team -IND DTA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"PC Team -IND DTA\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"PC Team -IND DTA from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM (SELECT * FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND MAINCLASS IN ('DTA','DTA1','JNDT1','JNDT2','NDTA1','NDTA2' )) X JOIN (SELECT a.agentname, a.remarks, b.agentclass, b.category, a.agentcode, a.firstname, a.middlename, a.lastname, a.branchcode, g.distrinctcode, g.zonecode, g.provincecode, a.status, a.naturetype, b.primarylevel, a.nicnumber, a.SLIIRegNo, a.agentnature, a.masteragent, a.dateofbirth, a.sex, a.maritalstatus, a.epfno, a.appointmentdate, a.paytaxflag, a.qualifications, h.address1, h.address2, h.telephonemobile, h.emailaddresslife, a.termnreason, CASE WHEN f.INITIALEFFECTIVEFROM IS NULL THEN a.appointmentdate ELSE f.INITIALEFFECTIVEFROM END AS INITIALEFFECTIVEFROM, a.resigndate FROM admin.agent_master a LEFT JOIN admin.agent_class_master b ON a.agentclass = b.agentclass LEFT JOIN admin.agent_master c ON a.masteragent = c.agentcode LEFT JOIN admin.agent_class_master d ON c.agentclass = d.agentclass LEFT JOIN admin.agent_master e ON c.masteragent = e.agentcode LEFT JOIN (SELECT * FROM admin.AGENT_ADDRESS_DET WHERE companycode = '00003') h ON a.agentcode = h.agentcode LEFT JOIN Admin.Branch_Master g ON a.branchcode = g.branchcode LEFT JOIN (SELECT agentcode, INITIALEFFECTIVEFROM FROM (SELECT agentcode, INITIALEFFECTIVEFROM, ROW_NUMBER() OVER (PARTITION BY agentcode ORDER BY INITIALEFFECTIVEFROM) AS ROWNUM_A FROM admin.Business_transfer_detail WHERE companycode = '00003') WHERE ROWNUM_A = 1) f ON a.agentcode = f.agentcode WHERE a.companycode = '00003' AND b.companycode = '00003' AND c.companycode = '00003' AND d.companycode = '00003' AND e.companycode = '00003' AND g.companycode = '00003' AND b.primarylevel IN ('1', '2', '3')) Y ON X.AGENTCODE = Y.AGENTCODE WHERE Y.MASTERAGENT = '{{agent_code}}'\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PC Team -GRP DTA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"PC Team -GRP DTA\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"PC Team -GRP DTA from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM (SELECT * FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND MAINCLASS IN ('LLG','PEN','JSV','BLANK') AND MODETYPE IN('S')) X JOIN (SELECT a.agentname, a.remarks, b.agentclass, b.category, a.agentcode, a.firstname, a.middlename, a.lastname, a.branchcode, g.distrinctcode, g.zonecode, g.provincecode, a.status, a.naturetype, b.primarylevel, a.nicnumber, a.SLIIRegNo, a.agentnature, a.masteragent, a.dateofbirth, a.sex, a.maritalstatus, a.epfno, a.appointmentdate, a.paytaxflag, a.qualifications, h.address1, h.address2, h.telephonemobile, h.emailaddresslife, a.termnreason, CASE WHEN f.INITIALEFFECTIVEFROM IS NULL THEN a.appointmentdate ELSE f.INITIALEFFECTIVEFROM END AS INITIALEFFECTIVEFROM, a.resigndate FROM admin.agent_master a LEFT JOIN admin.agent_class_master b ON a.agentclass = b.agentclass LEFT JOIN admin.agent_master c ON a.masteragent = c.agentcode LEFT JOIN admin.agent_class_master d ON c.agentclass = d.agentclass LEFT JOIN admin.agent_master e ON c.masteragent = e.agentcode LEFT JOIN (SELECT * FROM admin.AGENT_ADDRESS_DET WHERE companycode = '00003') h ON a.agentcode = h.agentcode LEFT JOIN Admin.Branch_Master g ON a.branchcode = g.branchcode LEFT JOIN (SELECT agentcode, INITIALEFFECTIVEFROM FROM (SELECT agentcode, INITIALEFFECTIVEFROM, ROW_NUMBER() OVER (PARTITION BY agentcode ORDER BY INITIALEFFECTIVEFROM) AS ROWNUM_A FROM admin.Business_transfer_detail WHERE companycode = '00003') WHERE ROWNUM_A = 1) f ON a.agentcode = f.agentcode WHERE a.companycode = '00003' AND b.companycode = '00003' AND c.companycode = '00003' AND d.companycode = '00003' AND e.companycode = '00003' AND g.companycode = '00003' AND b.primarylevel IN ('1', '2', '3')) Y ON X.AGENTCODE = Y.AGENTCODE WHERE Y.MASTERAGENT = '{{agent_code}}'\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PC Team -GRP LIFE",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"PC Team -GRP LIFE\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"PC Team -GRP LIFE from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM (SELECT * FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND MAINCLASS IN ('JSV') AND MODETYPE NOT IN('S')) X JOIN (SELECT a.agentname, a.remarks, b.agentclass, b.category, a.agentcode, a.firstname, a.middlename, a.lastname, a.branchcode, g.distrinctcode, g.zonecode, g.provincecode, a.status, a.naturetype, b.primarylevel, a.nicnumber, a.SLIIRegNo, a.agentnature, a.masteragent, a.dateofbirth, a.sex, a.maritalstatus, a.epfno, a.appointmentdate, a.paytaxflag, a.qualifications, h.address1, h.address2, h.telephonemobile, h.emailaddresslife, a.termnreason, CASE WHEN f.INITIALEFFECTIVEFROM IS NULL THEN a.appointmentdate ELSE f.INITIALEFFECTIVEFROM END AS INITIALEFFECTIVEFROM, a.resigndate FROM admin.agent_master a LEFT JOIN admin.agent_class_master b ON a.agentclass = b.agentclass LEFT JOIN admin.agent_master c ON a.masteragent = c.agentcode LEFT JOIN admin.agent_class_master d ON c.agentclass = d.agentclass LEFT JOIN admin.agent_master e ON c.masteragent = e.agentcode LEFT JOIN (SELECT * FROM admin.AGENT_ADDRESS_DET WHERE companycode = '00003') h ON a.agentcode = h.agentcode LEFT JOIN Admin.Branch_Master g ON a.branchcode = g.branchcode LEFT JOIN (SELECT agentcode, INITIALEFFECTIVEFROM FROM (SELECT agentcode, INITIALEFFECTIVEFROM, ROW_NUMBER() OVER (PARTITION BY agentcode ORDER BY INITIALEFFECTIVEFROM) AS ROWNUM_A FROM admin.Business_transfer_detail WHERE companycode = '00003') WHERE ROWNUM_A = 1) f ON a.agentcode = f.agentcode WHERE a.companycode = '00003' AND b.companycode = '00003' AND c.companycode = '00003' AND d.companycode = '00003' AND e.companycode = '00003' AND g.companycode = '00003' AND b.primarylevel IN ('1', '2', '3')) Y ON X.AGENTCODE = Y.AGENTCODE WHERE Y.MASTERAGENT = '{{agent_code}}'\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PC Team - OTHER",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"PC Team - OTHER\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"PC Team - OTHER from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM (SELECT * FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND MAINCLASS IN ('JCA', 'JCA01', 'JLU', 'NJU','NJU3','NJU2', 'NJU4', 'NGT', 'NGT01', 'NGT02', 'JEV', 'NJEV', 'POD', 'SPS', 'NSPS', 'LI1', 'LI2', 'NLI2', 'LI3', 'LI4', 'LIF1', 'SUW', 'NSW', 'VIS', 'VSR', 'JSS', 'VSP', 'CBPLP', 'CBNSW', 'CBMED', 'DNL', 'PRA', 'LAK', 'LAR', 'SHA', 'SHR', 'NGL', 'GIT')) X JOIN (SELECT a.agentname, a.remarks, b.agentclass, b.category, a.agentcode, a.firstname, a.middlename, a.lastname, a.branchcode, g.distrinctcode, g.zonecode, g.provincecode, a.status, a.naturetype, b.primarylevel, a.nicnumber, a.SLIIRegNo, a.agentnature, a.masteragent, a.dateofbirth, a.sex, a.maritalstatus, a.epfno, a.appointmentdate, a.paytaxflag, a.qualifications, h.address1, h.address2, h.telephonemobile, h.emailaddresslife, a.termnreason, CASE WHEN f.INITIALEFFECTIVEFROM IS NULL THEN a.appointmentdate ELSE f.INITIALEFFECTIVEFROM END AS INITIALEFFECTIVEFROM, a.resigndate FROM admin.agent_master a LEFT JOIN admin.agent_class_master b ON a.agentclass = b.agentclass LEFT JOIN admin.agent_master c ON a.masteragent = c.agentcode LEFT JOIN admin.agent_class_master d ON c.agentclass = d.agentclass LEFT JOIN admin.agent_master e ON c.masteragent = e.agentcode LEFT JOIN (SELECT * FROM admin.AGENT_ADDRESS_DET WHERE companycode = '00003') h ON a.agentcode = h.agentcode LEFT JOIN Admin.Branch_Master g ON a.branchcode = g.branchcode LEFT JOIN (SELECT agentcode, INITIALEFFECTIVEFROM FROM (SELECT agentcode, INITIALEFFECTIVEFROM, ROW_NUMBER() OVER (PARTITION BY agentcode ORDER BY INITIALEFFECTIVEFROM) AS ROWNUM_A FROM admin.Business_transfer_detail WHERE companycode = '00003') WHERE ROWNUM_A = 1) f ON a.agentcode = f.agentcode WHERE a.companycode = '00003' AND b.companycode = '00003' AND c.companycode = '00003' AND d.companycode = '00003' AND e.companycode = '00003' AND g.companycode = '00003' AND b.primarylevel IN ('1', '2', '3')) Y ON X.AGENTCODE = Y.AGENTCODE WHERE Y.MASTERAGENT = '{{agent_code}}'\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PC Team - OTHER JHCB",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.TOTAL;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"PC Team - OTHER JHCB\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"PC Team - OTHER JHCB from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM (SELECT * FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND MAINCLASS IN ('JHCB')) X JOIN (SELECT a.agentname, a.remarks, b.agentclass, b.category, a.agentcode, a.firstname, a.middlename, a.lastname, a.branchcode, g.distrinctcode, g.zonecode, g.provincecode, a.status, a.naturetype, b.primarylevel, a.nicnumber, a.SLIIRegNo, a.agentnature, a.masteragent, a.dateofbirth, a.sex, a.maritalstatus, a.epfno, a.appointmentdate, a.paytaxflag, a.qualifications, h.address1, h.address2, h.telephonemobile, h.emailaddresslife, a.termnreason, CASE WHEN f.INITIALEFFECTIVEFROM IS NULL THEN a.appointmentdate ELSE f.INITIALEFFECTIVEFROM END AS INITIALEFFECTIVEFROM, a.resigndate FROM admin.agent_master a LEFT JOIN admin.agent_class_master b ON a.agentclass = b.agentclass LEFT JOIN admin.agent_master c ON a.masteragent = c.agentcode LEFT JOIN admin.agent_class_master d ON c.agentclass = d.agentclass LEFT JOIN admin.agent_master e ON c.masteragent = e.agentcode LEFT JOIN (SELECT * FROM admin.AGENT_ADDRESS_DET WHERE companycode = '00003') h ON a.agentcode = h.agentcode LEFT JOIN Admin.Branch_Master g ON a.branchcode = g.branchcode LEFT JOIN (SELECT agentcode, INITIALEFFECTIVEFROM FROM (SELECT agentcode, INITIALEFFECTIVEFROM, ROW_NUMBER() OVER (PARTITION BY agentcode ORDER BY INITIALEFFECTIVEFROM) AS ROWNUM_A FROM admin.Business_transfer_detail WHERE companycode = '00003') WHERE ROWNUM_A = 1) f ON a.agentcode = f.agentcode WHERE a.companycode = '00003' AND b.companycode = '00003' AND c.companycode = '00003' AND d.companycode = '00003' AND e.companycode = '00003' AND g.companycode = '00003' AND b.primarylevel IN ('1', '2', '3')) Y ON X.AGENTCODE = Y.AGENTCODE WHERE Y.MASTERAGENT = '{{agent_code}}'\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "NP/PC Rider Deduction",
+					"item": [
+						{
+							"name": "Rider Deduction - GRP DTA",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.FINAL_TOTAL_DEDUCTION;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"PC/NPC Rider Deduction - GRP DTA\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"PC/NPC Rider Deduction - GRP DTA from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV', 'LLG', 'PEN', 'BLANK') AND b.MODETYPE IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.MASTERAGENT='{{agent_code}}' AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') UNION ALL SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.vwAllAgents_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV', 'LLG', 'PEN', 'BLANK') AND b.MODETYPE IN ('S') AND ag.agentcode='{{agent_code}}' AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Rider Deduction - GRP LIFE",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Parse JSON response\r",
+											"let jsonData = pm.response.json();\r",
+											"\r",
+											"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+											"//let totalValue = jsonData.TOTAL;\r",
+											"\r",
+											"// If response is an array, take the first item\r",
+											"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+											"\r",
+											"// Save it as an environment variable (optional, if you want to use later)\r",
+											"pm.environment.set(\"PC/NPC Rider Deduction - GRP LIFE\", totalValue);\r",
+											"\r",
+											"// Log the value to console (Newman will show it)\r",
+											"console.log(\"PC/NPC Rider Deduction - GRP LIFE from this query:\", totalValue);\r",
+											"\r",
+											"\r",
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "x-api-key",
+										"value": "test_api_key_value",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV') AND b.MODETYPE NOT IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.MASTERAGENT='{{agent_code}}' AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') UNION ALL SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.vwAllAgents_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV') AND b.MODETYPE NOT IN ('S') AND ag.agentcode='{{agent_code}}' AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://avoconnector.echonlabs.com/query",
+									"protocol": "https",
+									"host": [
+										"avoconnector",
+										"echonlabs",
+										"com"
+									],
+									"path": [
+										"query"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "CM",
+			"item": [
+				{
+					"name": "CM- BFI",
+					"item": [
+						{
+							"name": "CM- BFI - Ach",
+							"item": [
+								{
+									"name": "CM- BFI - Ach - IND DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM- BFI - Ach - IND DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM- BFI - Ach - IND DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN ('BFI1','BFI2','BFI4','BFI5','BFI6') AND MAINCLASS IN ('DTA', 'DTA1', 'JNDT1', 'JNDT2', 'NDTA1', 'NDTA2')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- BFI - Ach - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM- BFI - Ach - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM- BFI - Ach - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN ('BFI1','BFI2','BFI4','BFI5','BFI6') AND MAINCLASS IN ('LLG', 'PEN', 'BLANK','JSV') AND MODETYPE IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- BFI - Ach - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM- BFI - Ach - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM- BFI - Ach - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE  IN ('BFI1','BFI2','BFI4','BFI5','BFI6') AND MAINCLASS IN ('JSV') AND MODETYPE NOT IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- BFI - Ach - OTHER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM- BFI - Ach - OTHER\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM- BFI - Ach - OTHER from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('BFI1','BFI2','BFI4','BFI5','BFI6') AND MAINCLASS IN ('JCA', 'JCA01', 'JLU', 'NJU','NJU3','NJU2', 'NJU4', 'NGT', 'NGT01', 'NGT02', 'JEV', 'NJEV', 'POD', 'SPS', 'NSPS', 'LI1', 'LI2', 'NLI2', 'LI3', 'LI4', 'LIF1', 'SUW', 'NSW', 'VIS', 'VSR', 'JSS', 'VSP', 'CBPLP', 'CBNSW', 'CBMED', 'DNL', 'PRA', 'LAK', 'LAR', 'SHA', 'SHR', 'NGL', 'GIT')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CM -BFI - Rider",
+							"item": [
+								{
+									"name": "CM -BFI - Rider - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFI - Rider - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFI - Rider - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV', 'LLG', 'PEN', 'BLANK') AND b.MODETYPE IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('BFI') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -BFI - Rider - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFI - Rider - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFI - Rider - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV') AND b.MODETYPE NOT IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('BFI') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "CM- BFIA",
+					"item": [
+						{
+							"name": "CM- BFIA- Ach",
+							"item": [
+								{
+									"name": "CM -BFIA -Ach - IND DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFIA-Ach - IND DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFIA -Ach - IND DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN ('CBB','CBB2','CBB4','SBL') AND MAINCLASS IN ('DTA', 'DTA1', 'JNDT1', 'JNDT2', 'NDTA1', 'NDTA2')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query?xa",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											],
+											"query": [
+												{
+													"key": "xa",
+													"value": null
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -BFIA-Ach - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFIA -Ach - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFIA -Ach - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('CBB','CBB2','CBB4','SBL') AND MAINCLASS IN ('LLG', 'PEN', 'BLANK','JSV') AND MODETYPE IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -BFIA-Ach - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFIA -Ach - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFIA -Ach - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('CBB','CBB2','CBB4','SBL') AND MAINCLASS IN ('JSV') AND MODETYPE NOT IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -BFIA-Ach - OTHER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFIA -Ach - OTHER\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFIA -Ach - OTHER from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003'AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN ('CBB','CBB2','CBB4','SBL') AND MAINCLASS IN ('JCA', 'JCA01', 'JLU', 'NJU','NJU3','NJU2', 'NJU4', 'NGT', 'NGT01', 'NGT02', 'JEV', 'NJEV', 'POD', 'SPS', 'NSPS', 'LI1', 'LI2', 'NLI2', 'LI3', 'LI4', 'LIF1', 'SUW', 'NSW', 'VIS', 'VSR', 'JSS', 'VSP', 'CBPLP', 'CBNSW', 'CBMED', 'DNL', 'PRA', 'LAK', 'LAR', 'SHA', 'SHR', 'NGL', 'GIT')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CM- BFIA - Rider",
+							"item": [
+								{
+									"name": "CM -BFIA -Rider -GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFIA - Rider - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFIA - Rider - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV', 'LLG', 'PEN', 'BLANK') AND b.MODETYPE IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('BFIA') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -BFIA -Rider -GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -BFIA - Rider - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -BFIA - Rider - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV') AND b.MODETYPE NOT IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('BFIA') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "CM- GRP",
+					"item": [
+						{
+							"name": "CM- GRP -Ach",
+							"item": [
+								{
+									"name": "CM- GRP -Ach - IND DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRP-Ach - IND DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRP -Ach - IND DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND BRANCHCODE IN('BSL','BSL2','GSL') AND MAINCLASS IN ('DTA', 'DTA1', 'JNDT1', 'JNDT2', 'NDTA1', 'NDTA2')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- GRP -Ach - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRP-Ach - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRP -Ach - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND BRANCHCODE IN('BSL','BSL2','GSL') AND MAINCLASS IN ('LLG', 'PEN', 'BLANK','JSV') AND MODETYPE IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											],
+											"query": [
+												{
+													"key": "x-api-key",
+													"value": "test_api_key_value",
+													"disabled": true
+												},
+												{
+													"key": "x",
+													"value": null,
+													"disabled": true
+												}
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- GRP -Ach - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRP-Ach - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRP -Ach - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND BRANCHCODE IN('BSL','BSL2','GSL') AND MAINCLASS IN ('JSV') AND MODETYPE NOT IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- GRP -Ach - OTHER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRP-Ach - OTHER\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRP -Ach - OTHER from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND BRANCHCODE IN('BSL','BSL2','GSL') AND MAINCLASS IN ('JCA', 'JCA01', 'JLU', 'NJU','NJU3','NJU2', 'NJU4', 'NGT', 'NGT01', 'NGT02', 'JEV', 'NJEV', 'POD', 'SPS', 'NSPS', 'LI1', 'LI2', 'NLI2', 'LI3', 'LI4', 'LIF1', 'SUW', 'NSW', 'VIS', 'VSR', 'JSS', 'VSP', 'CBPLP', 'CBNSW', 'CBMED', 'DNL', 'PRA', 'LAK', 'LAR', 'SHA', 'SHR', 'NGL', 'GIT')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CM- GRP -Rider",
+							"item": [
+								{
+									"name": "CM -GRP -Rider - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRP - Rider - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRP - Rider - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV', 'LLG', 'PEN', 'BLANK') AND b.MODETYPE IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('GRP') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -GRP -Rider - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRP - Rider - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRP - Rider - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {},
+												"requests": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "test_api_key_value",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV') AND b.MODETYPE NOT IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('GRP') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://avoconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"avoconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "CM- GRPA",
+					"item": [
+						{
+							"name": "CM- GRPA -Ach",
+							"item": [
+								{
+									"name": "CM- GRPA- Ach - IND DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRPA-Ach - IND DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRPA -Ach - IND DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('ASL','ABF') AND MAINCLASS IN ('DTA', 'DTA1', 'JNDT1', 'JNDT2', 'NDTA1', 'NDTA2')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- GRPA- Ach - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRPA-Ach - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRPA -Ach - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('ASL','ABF') AND MAINCLASS IN ('LLG', 'PEN', 'BLANK','JSV') AND MODETYPE IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- GRPA- Ach - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRPA-Ach - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRPA -Ach - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('ASL','ABF') AND MAINCLASS IN ('JSV') AND MODETYPE NOT IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- GRPA- Ach - OTHER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRPA-Ach - OTHER\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRPA -Ach - OTHER from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('ASL','ABF') AND MAINCLASS IN ('JCA', 'JCA01', 'JLU', 'NJU','NJU3','NJU2', 'NJU4', 'NGT', 'NGT01', 'NGT02', 'JEV', 'NJEV', 'POD', 'SPS', 'NSPS', 'LI1', 'LI2', 'NLI2', 'LI3', 'LI4', 'LIF1', 'SUW', 'NSW', 'VIS', 'VSR', 'JSS', 'VSP', 'CBPLP', 'CBNSW', 'CBMED', 'DNL', 'PRA', 'LAK', 'LAR', 'SHA', 'SHR', 'NGL', 'GIT')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CM- GRPA- Rider",
+							"item": [
+								{
+									"name": "CM -GRPA - Rider - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRPA - Rider - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRPA - Rider - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV', 'LLG', 'PEN', 'BLANK') AND b.MODETYPE IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('GRPA') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -GRPA - Rider - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -GRPA - Rider - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -GRPA - Rider - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV') AND b.MODETYPE NOT IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('GRPA') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "CM- DGT",
+					"item": [
+						{
+							"name": "CM- DGT -Ach",
+							"item": [
+								{
+									"name": "CM- DGT -Ach - IND DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -DGT -Ach - IND DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -DGT  -Ach - IND DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('DSL') AND MAINCLASS IN ('DTA', 'DTA1', 'JNDT1', 'JNDT2', 'NDTA1', 'NDTA2')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- DGT -Ach - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM-DGT-Ach - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM-DGT -Ach - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('DSL') AND MAINCLASS IN ('LLG', 'PEN', 'BLANK','JSV') AND MODETYPE IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- DGT-Ach - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -DGT-Ach - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -DGT -Ach - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('DSL') AND MAINCLASS IN ('JSV') AND MODETYPE NOT IN ('S')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- DGT-Ach - OTHER",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -DGT-Ach - OTHER\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -DGT -Ach - OTHER from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd')AND BRANCHCODE IN('DSL') AND MAINCLASS IN ('JCA', 'JCA01', 'JLU', 'NJU','NJU3','NJU2', 'NJU4', 'NGT', 'NGT01', 'NGT02', 'JEV', 'NJEV', 'POD', 'SPS', 'NSPS', 'LI1', 'LI2', 'NLI2', 'LI3', 'LI4', 'LIF1', 'SUW', 'NSW', 'VIS', 'VSR', 'JSS', 'VSP', 'CBPLP', 'CBNSW', 'CBMED', 'DNL', 'PRA', 'LAK', 'LAR', 'SHA', 'SHR', 'NGL', 'GIT')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM- DGT-Ach - OTHER JHCB",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.TOTAL;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -DGT-Ach - OTHER JHCB\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -DGT -Ach - OTHER JHCB from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"query\": \"SELECT NVL(SUM(NEWBUSINESS) + SUM(FIRSTYEAR)+ SUM(NEXTYEAR),0) as TOTAL FROM Findw.LIFE_GWP_LIVE@Findw  WHERE COMPANYCODE='00003' AND  RECEIPTDATE>=TO_DATE('{{min_date}}','yyyy-mm-dd') AND RECEIPTDATE<=TO_DATE('{{max_date}}','yyyy-mm-dd') AND BRANCHCODE IN ('DSL','DSL2') AND MAINCLASS IN ('JHCB')\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						},
+						{
+							"name": "CM- GRP -Rider",
+							"item": [
+								{
+									"name": "CM -DGT-Rider - GRP DTA",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -DGT - Rider - GRP DTA\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -DGT - Rider - GRP DTA from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV', 'LLG', 'PEN', 'BLANK') AND b.MODETYPE IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('DGT') AND ag.BRANCHCODE NOT IN ('MIN') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								},
+								{
+									"name": "CM -DGT-Rider - GRP LIFE",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"// Parse JSON response\r",
+													"let jsonData = pm.response.json();\r",
+													"\r",
+													"// Assuming your response is like: { \"TOTAL\": 12345.67 }\r",
+													"//let totalValue = jsonData.TOTAL;\r",
+													"\r",
+													"// If response is an array, take the first item\r",
+													"let totalValue = jsonData[0]?.FINAL_TOTAL_DEDUCTION;\r",
+													"\r",
+													"// Save it as an environment variable (optional, if you want to use later)\r",
+													"pm.environment.set(\"CM -DGT - Rider - GRP LIFE\", totalValue);\r",
+													"\r",
+													"// Log the value to console (Newman will show it)\r",
+													"console.log(\"CM -DGT - Rider - GRP LIFE from this query:\", totalValue);\r",
+													"\r",
+													"\r",
+													""
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "x-api-key",
+												"value": "123456",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"query\": \"SELECT NVL(SUM(TOTAL_DEDUCT),0) AS FINAL_TOTAL_DEDUCTION FROM (SELECT NVL(SUM(NVL(a.OPD,0) * {{rate_OPD}} + NVL(a.HOSPT,0) * {{rate_HOSPT}} + NVL(a.TPD,0) * {{rate_TPD}}),0) AS TOTAL_DEDUCT FROM admin.LIFE_GROUPRIDER_fins a , admin.dochdr b , admin.VWALLAGENTS_fins ag WHERE b.companycode='00003' AND ag.agentcode=b.agentcode AND NVL(b.PARENTDOCUMENTNO,b.documentno)=a.documentno and b.MAINCLASS IN ('JSV') AND b.MODETYPE NOT IN ('S') AND a.ENDORSEMENTCOUNT=b.EndorsementCount AND ag.ZONECODE IN ('DGT') AND ag.BRANCHCODE NOT IN ('MIN') AND a.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd') AND b.AUTHORIZEDDATE BETWEEN TO_DATE('{{min_date}}','rrrr-mm-dd') AND TO_DATE('{{max_date}}','rrrr-mm-dd'))\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "https://dbconnector.echonlabs.com/query",
+											"protocol": "https",
+											"host": [
+												"dbconnector",
+												"echonlabs",
+												"com"
+											],
+											"path": [
+												"query"
+											]
+										}
+									},
+									"response": []
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Connection",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-api-key",
+						"value": "123456",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dbconnector.echonlabs.com/",
+					"protocol": "https",
+					"host": [
+						"dbconnector",
+						"echonlabs",
+						"com"
+					],
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

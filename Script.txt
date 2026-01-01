@@ -1,0 +1,4 @@
+newman run "PMS-AVO Connector II.postman_collection.json" -e "PMS-ENVII.postman_environment.json" -r cli,html
+
+newman run "PMS-AVO Connector II.postman_collection.json" -e "PMS-ENVII.postman_environment.json" -r htmlextra
+
